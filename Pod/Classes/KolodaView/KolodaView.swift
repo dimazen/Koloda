@@ -431,7 +431,6 @@ open class KolodaView: UIView, DraggableCardDelegate {
                     return
                 }
                 
-                _self.visibleCards.last?.isHidden = false
                 _self.animationSemaphore.decrement()
                 _self.delegate?.koloda(_self, didSwipeCardAt: swipedCardIndex, in: direction)
                 _self.delegate?.koloda(_self, didShowCardAt: _self.currentCardIndex)
@@ -458,7 +457,6 @@ open class KolodaView: UIView, DraggableCardDelegate {
         
         let scale = cardParameters.scale
         lastCard.layer.transform = CATransform3DScale(CATransform3DIdentity, scale.width, scale.height, 1)
-        lastCard.isHidden = true
         lastCard.isUserInteractionEnabled = true
         
         if let card = visibleCards.last {
