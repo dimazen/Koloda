@@ -119,14 +119,12 @@ public class DraggableCardView: UIView, UIGestureRecognizerDelegate {
             self.overlayView = overlay
             overlay.alpha = 0;
             self.addSubview(overlay)
-            configureOverlayView()
             self.insertSubview(view, belowSubview: overlay)
         } else {
             self.addSubview(view)
         }
 
         self.contentView = view
-        configureContentView()
     }
 
     func configureSwipeSpeed() {
