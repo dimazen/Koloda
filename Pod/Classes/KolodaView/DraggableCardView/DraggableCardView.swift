@@ -129,91 +129,19 @@ public class DraggableCardView: UIView, UIGestureRecognizerDelegate {
         configureContentView()
     }
 
-    private func configureOverlayView() {
-        if let overlay = self.overlayView {
-            overlay.translatesAutoresizingMaskIntoConstraints = false
-            
-            let width = NSLayoutConstraint(
-                item: overlay,
-                attribute: .width,
-                relatedBy: .equal,
-                toItem: self,
-                attribute: .width,
-                multiplier: 1.0,
-                constant: 0)
-            let height = NSLayoutConstraint(
-                item: overlay,
-                attribute: .height,
-                relatedBy: .equal,
-                toItem: self,
-                attribute: .height,
-                multiplier: 1.0,
-                constant: 0)
-            let top = NSLayoutConstraint (
-                item: overlay,
-                attribute: .top,
-                relatedBy: .equal,
-                toItem: self,
-                attribute: .top,
-                multiplier: 1.0,
-                constant: 0)
-            let leading = NSLayoutConstraint (
-                item: overlay,
-                attribute: .leading,
-                relatedBy: .equal,
-                toItem: self,
-                attribute: .leading,
-                multiplier: 1.0,
-                constant: 0)
-            addConstraints([width,height,top,leading])
-        }
-    }
-    
-    private func configureContentView() {
-        if let contentView = self.contentView {
-            contentView.translatesAutoresizingMaskIntoConstraints = false
-            
-            let width = NSLayoutConstraint(
-                item: contentView,
-                attribute: .width,
-                relatedBy: .equal,
-                toItem: self,
-                attribute: .width,
-                multiplier: 1.0,
-                constant: 0)
-            let height = NSLayoutConstraint(
-                item: contentView,
-                attribute: .height,
-                relatedBy: .equal,
-                toItem: self,
-                attribute: .height,
-                multiplier: 1.0,
-                constant: 0)
-            let top = NSLayoutConstraint (
-                item: contentView,
-                attribute: .top,
-                relatedBy: .equal,
-                toItem: self,
-                attribute: .top,
-                multiplier: 1.0,
-                constant: 0)
-            let leading = NSLayoutConstraint (
-                item: contentView,
-                attribute: .leading,
-                relatedBy: .equal,
-                toItem: self,
-                attribute: .leading,
-                multiplier: 1.0,
-                constant: 0)
-            
-            addConstraints([width,height,top,leading])
-        }
-    }
-    
     func configureSwipeSpeed() {
         if let delegate = delegate {
             cardSwipeActionAnimationDuration = delegate.card(cardSwipeSpeed: self).rawValue
         }
+    }
+    
+    // MARK: - Layout
+
+    public override func layoutSubviews() {
+        super.layoutSubviews()
+        
+        contentView?.frame = bounds
+        overlayView?.frame = bounds
     }
     
     //MARK: GestureRecognizers
