@@ -38,7 +38,7 @@ private let defaultScaleMin: CGFloat = 0.8
 private let screenSize = UIScreen.main.bounds.size
 
 //Reset animation constants
-private let cardResetAnimationSpringBounciness: CGFloat = 10.0
+private let cardResetAnimationSpringBounciness: CGFloat = 0.9
 private let cardResetAnimationSpringSpeed: CGFloat = 20.0
 private let cardResetAnimationKey = "resetPositionAnimation"
 private let cardResetAnimationDuration: TimeInterval = 0.2
@@ -317,7 +317,7 @@ public class DraggableCardView: UIView, UIGestureRecognizerDelegate {
         
         removeAnimations()
 
-        UIView.animate(withDuration: cardResetAnimationDuration, delay: 0, usingSpringWithDamping: (20 - cardResetAnimationSpringBounciness) / 20, initialSpringVelocity: cardResetAnimationSpringSpeed * 2, options: []) {
+        UIView.animate(withDuration: cardResetAnimationDuration, delay: 0, usingSpringWithDamping: cardResetAnimationSpringBounciness, initialSpringVelocity: cardResetAnimationSpringSpeed * 2, options: []) {
             self.transform = .identity
         } completion: { _ in
             self.layer.transform = CATransform3DIdentity

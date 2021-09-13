@@ -457,7 +457,8 @@ open class KolodaView: UIView, DraggableCardDelegate {
         let scale = cardParameters.scale
         lastCard.layer.transform = CATransform3DScale(CATransform3DIdentity, scale.width, scale.height, 1)
         lastCard.isUserInteractionEnabled = true
-        
+        lastCard.alpha = alphaValueTransparent
+
         if let card = visibleCards.last {
             insertSubview(lastCard, belowSubview: card)
         } else {
@@ -475,7 +476,7 @@ open class KolodaView: UIView, DraggableCardDelegate {
             var animationCompletion: ((Bool) -> Void)? = nil
             if index != 0 {
                 if shouldTransparentizeNextCard {
-                    currentCard.alpha = alphaValueSemiTransparent
+                    animator.applyAlphaAnimation(currentCard, alpha: alphaValueSemiTransparent)
                 }
             } else {
                 animationCompletion = { finished in
